@@ -15,14 +15,14 @@
 #
 # Author:
 #   Aysakh
+roll = (dice, sides) ->
+  result = 0
+  result += Math.floor((Math.random() * sides) + 1) for [1..dice]
+  result
+
+
 module.exports = (robot) ->
   robot.respond /(.*)d(.*)/i, (msg) ->
 
-    dice  = msg.match[1]
-    sides = msg.match[2]
+    msg.send roll(msg.match[1], msg.match[2])
 
-    result = 0
-
-    result += Math.floor((Math.random() * sides) + 1) for [1..dice]
-
-    msg.send result
